@@ -1,0 +1,86 @@
+.Field {
+}
+
+.Row {
+  display: flex;
+  justify-content: center;
+}
+
+.Row1 {
+  background-color: brown;
+}
+
+.NewGame {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.NewGame button {
+  width: 230px;
+  height: 50px;
+  font-size: 30px;
+  margin: 0 20px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.NewGame button:nth-of-type(1) {
+  background-color: #ffbe0b;
+  border: none;
+  color: #3a86ff;
+  width: 280px;
+  height: 60px;
+}
+
+.NewGame button:nth-of-type(1):hover {
+  background-color: #e6a903;
+  color: #064fc4;
+}
+
+.NewGame button:nth-of-type(1):focus {
+  outline: none;
+}
+
+.NewGame button:nth-of-type(2) {
+  box-sizing: content-box;
+  width: auto;
+  background-color: #3a86ff;
+  border: none;
+  color: #ffbe0b;
+}
+
+.NewGame button:nth-of-type(2):hover {
+  background-color: #2f6ccf;
+  color: #f8cb4f;
+}
+
+.NewGame button:nth-of-type(2):focus {
+  outline: none;
+}
+
+.NewGame button:nth-of-type(3) {
+  background-color: #fb5607;
+  border: none;
+  color: #1261e0;
+}
+
+.NewGame button:nth-of-type(3):hover {
+  background-color: #f57032;
+  border: none;
+}
+
+.NewGame button:nth-of-type(3):focus {
+  outline: none;
+}
+
+@media (max-width: 370px) {
+  .NewGame {
+    flex-direction: column;
+  }
+  .NewGame button {
+    margin: 5px 0px;
+  }
+} ;

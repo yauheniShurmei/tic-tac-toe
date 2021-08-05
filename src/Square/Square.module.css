@@ -1,0 +1,40 @@
+.Square {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.FirstLine {
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+}
+
+.SecondLine {
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+}
+
+.CentralQuad {
+  border: 3px solid black;
+}
+
+.IsWin {
+  background-color: red;
+}
+
+.IsStandoff {
+  background-color: green;
+}
+
+.FirstColor {
+  color: #fb5607;
+}
+
+.SecondColor {
+  color: #3a86ff;
+}

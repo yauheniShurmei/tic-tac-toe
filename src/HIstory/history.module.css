@@ -1,0 +1,71 @@
+.History {
+  position: fixed;
+  width: 30%;
+  height: 500px;
+  border: 1px solid #3a86ff;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0px 0px 2px 0.1px #3a86ff;
+  left: 35%;
+  top: 20%;
+  transition: all 0.3s ease-out;
+  overflow: scroll;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.History h1 {
+  text-align: center;
+  margin: 20px auto;
+  color: #3a86ff;
+}
+
+.History ul {
+  padding: 0px 20px;
+}
+
+.History li {
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* white-space: nowrap; */
+  /* box-sizing: border-box; */
+  /* overflow: hidden; */
+  text-align: center;
+  list-style: armenian;
+}
+.History .CloseIcon {
+  cursor: pointer;
+}
+.History .CloseIcon div {
+  width: 15px;
+  height: 1px;
+  margin: 1px;
+  background-color: red;
+  transition: all 1s;
+}
+.History .CloseIcon div:nth-of-type(1) {
+  transform: rotate(47deg) translate(9px, 1px);
+}
+
+.History .CloseIcon div:nth-of-type(2) {
+  transform: rotate(314deg) translate(0px, 8px);
+}
+
+@media (max-width: 1250px) {
+  .History {
+    width: 60%;
+    left: 20%;
+  }
+}
+
+@media (max-width: 700px) {
+  .History {
+    width: 80%;
+    left: 10%;
+  }
+}
