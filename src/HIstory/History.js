@@ -23,28 +23,30 @@ const History = (props) => {
       .get("https://kulko-krzyzyk-default-rtdb.firebaseio.com/history.json")
       .then((res) => {
         setIsLoad(false);
-        if (res.data) {
-          const list = Object.keys(res.data).map((key) => {
-            const list = res.data[key];
-            return (
-              <li key={list.id}>
-                {`${list.data}, ${list.player1}=${list.player1Count} / ${list.player2}=${list.player2Count}`}
-                <div
-                  onClick={() => deleteOneGame(key)}
-                  className={classes.CloseIcon}
-                >
-                  <div></div>
-                  <div></div>
-                </div>
-              </li>
-            );
-          });
-          setListOfWinner(list);
-          setIsLoad(true);
-        }
+        setListOfWinner(res.data);
+        setIsLoad(true);
       })
       .catch();
   }, []);
+
+  let list = (
+    <li style={{ justifyContent: "center", color: "red" }}>No history yet</li>
+  );
+
+  if (listOfWinner) {
+    list = Object.keys(listOfWinner).map((key) => {
+      const list = listOfWinner[key];
+      return (
+        <li key={list.id}>
+          {`${list.data}, ${list.player1}=${list.player1Count} / ${list.player2}=${list.player2Count}`}
+          <div onClick={() => deleteOneGame(key)} className={classes.CloseIcon}>
+            <div></div>
+            <div></div>
+          </div>
+        </li>
+      );
+    });
+  }
 
   useEffect(() => {
     props.show && loadGamesHistory();
@@ -64,7 +66,7 @@ const History = (props) => {
           No history yet
         </li>
       )}
-      {isLoad && listOfWinner}
+      {isLoad && list}
     </div>
   );
 };
