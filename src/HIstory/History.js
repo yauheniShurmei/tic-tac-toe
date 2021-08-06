@@ -1,55 +1,54 @@
 import classes from "./history.module.css";
 import axios from "axios";
+import { useState, useEffect, useCallback } from "react";
 
 const History = (props) => {
-  console.log(props.listOfWinner);
+  const [listOfWinner, setListOfWinner] = useState();
+  const [isLoad, setIsLoad] = useState();
+  console.log("HISTORY COMPONENT IS LOASDED");
 
   const deleteOneGame = (key) => {
-    axios.delete(
-      `https://kulko-krzyzyk-default-rtdb.firebaseio.com/history/${key}.json`
-    );
+    axios
+      .delete(
+        `https://kulko-krzyzyk-default-rtdb.firebaseio.com/history/${key}.json`
+      )
+      .then((res) => {
+        loadGamesHistory();
+      });
   };
 
-  // const loadGamesHistory = () => {
-  //   axios
-  //     .get("https://kulko-krzyzyk-default-rtdb.firebaseio.com/history.json")
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch();
-  // };
+  const loadGamesHistory = useCallback(() => {
+    console.log("LOAD GAMESHISTORY FUNCTION");
+    axios
+      .get("https://kulko-krzyzyk-default-rtdb.firebaseio.com/history.json")
+      .then((res) => {
+        setIsLoad(false);
+        if (res.data) {
+          const list = Object.keys(res.data).map((key) => {
+            const list = res.data[key];
+            return (
+              <li key={list.id}>
+                {`${list.data}, ${list.player1}=${list.player1Count} / ${list.player2}=${list.player2Count}`}
+                <div
+                  onClick={() => deleteOneGame(key)}
+                  className={classes.CloseIcon}
+                >
+                  <div></div>
+                  <div></div>
+                </div>
+              </li>
+            );
+          });
+          setListOfWinner(list);
+          setIsLoad(true);
+        }
+      })
+      .catch();
+  }, []);
 
-  // if (props.show) {
-  //   // loadGamesHistory();
-  //   if (gameHistory) {
-  //     const games = Object.keys(gameHistory.data).map((key) => {
-  //       const game = gameHistory.data[key];
-  //       return (
-  //         <li key={key}>
-  //           {game.player1}: {game.player1Count} - {game.player2}:{" "}
-  //           {game.player2Count} <br /> ({game.data})
-  //           <div
-  //             onClick={() => deleteOneGame(key)}
-  //             className={classes.CloseIcon}
-  //           >
-  //             <div></div>
-  //             <div></div>
-  //           </div>
-  //         </li>
-  //       );
-  //     });
-  //   } else {
-  //     const game = (
-  //       <li style={{ justifyContent: "center", color: "red" }}>
-  //         No history yet
-  //       </li>
-  //     );
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   loadGamesHistory();
-  // }, []);
+  useEffect(() => {
+    props.show && loadGamesHistory();
+  }, [loadGamesHistory, props.show]);
 
   return (
     <div
@@ -60,17 +59,14 @@ const History = (props) => {
       }}
     >
       <h1>HISTORY</h1>
-      {Object.keys(props.listOfWinner).map((key) => {
-        const list = props.listOfWinner[key];
-        return (
-          <ul
-            key={list.id}
-          >{`${list.data}, ${list.player1}=${list.player1Count} / ${list.player2}=${list.player2Count}`}</ul>
-        );
-      })}
+      {!isLoad && (
+        <li style={{ justifyContent: "center", color: "red" }}>
+          No history yet
+        </li>
+      )}
+      {isLoad && listOfWinner}
     </div>
   );
 };
-// }
 
 export default History;

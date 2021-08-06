@@ -25,6 +25,7 @@
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
+  user-select: none;
 }
 
 .NewGame button:nth-of-type(1) {

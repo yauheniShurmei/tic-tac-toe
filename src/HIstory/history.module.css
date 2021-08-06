@@ -27,19 +27,23 @@
 }
 
 .History li {
-  margin: 5px;
+  width: 95%;
+  margin: 5px auto;
   padding: 5px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  /* white-space: nowrap; */
-  /* box-sizing: border-box; */
-  /* overflow: hidden; */
   text-align: center;
   list-style: armenian;
 }
 .History .CloseIcon {
+  border: 1px solid red;
+  border-radius: 25%;
+  margin-left: 10px;
   cursor: pointer;
+  height: 20px;
+  width: 20px;
+  box-sizing: border-box;
 }
 .History .CloseIcon div {
   width: 15px;
@@ -49,11 +53,11 @@
   transition: all 1s;
 }
 .History .CloseIcon div:nth-of-type(1) {
-  transform: rotate(47deg) translate(9px, 1px);
+  transform: rotate(45deg) translate(6px, 5px);
 }
 
 .History .CloseIcon div:nth-of-type(2) {
-  transform: rotate(314deg) translate(0px, 8px);
+  transform: rotate(-45deg) translate(-3.5px, 4.5px);
 }
 
 @media (max-width: 1250px) {

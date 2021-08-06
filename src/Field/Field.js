@@ -178,14 +178,6 @@ class Field extends Component {
 
   showHistory = () => {
     this.setState({ isHistoryShow: !this.state.isHistoryShow });
-    if (!this.state.isHistoryShow) {
-      axios
-        .get("https://kulko-krzyzyk-default-rtdb.firebaseio.com/history.json")
-        .then((res) => {
-          this.setState({ ...this.state, listOfWinner: res.data });
-        })
-        .catch();
-    }
   };
 
   saveResult = () => {
@@ -221,6 +213,13 @@ class Field extends Component {
     }
   };
 
+  deleteOneGame = (key) => {
+    console.log("HELLO", key);
+    axios.delete(
+      `https://kulko-krzyzyk-default-rtdb.firebaseio.com/history/${key}.json`
+    );
+  };
+
   render() {
     let columns = [];
     for (let i = 0; i < 3; i++) {
@@ -248,7 +247,11 @@ class Field extends Component {
     let style =
       this.state.isWin || this.state.isStandoff
         ? { opacity: 1, transition: "opacity 0.5s", whiteSpace: "nowrap" }
-        : { opacity: 0, transition: "opacity 0.5s" };
+        : {
+            opacity: 0,
+            transition: "opacity 0.5s",
+            transform: "scale(0)",
+          };
 
     return (
       <div className={classes.Field}>
@@ -264,6 +267,7 @@ class Field extends Component {
         <History
           show={this.state.isHistoryShow}
           listOfWinner={this.state.listOfWinner}
+          deleteOneGame={(key) => this.deleteOneGame(key)}
         />
         {columns}
         <Player
