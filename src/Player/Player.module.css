@@ -1,3 +1,11 @@
+.Players {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
 .Players input {
   width: 250px;
   height: 50px;
