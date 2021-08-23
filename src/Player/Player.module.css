@@ -6,11 +6,10 @@
 }
 
 .Players input {
-  margin-top: 10px;
   width: 250px;
   height: 50px;
+  margin-top: 10px;
   font-size: 30px;
-  /* border: 5px solid #3a86ff; */
   border: none;
   background-color: #3a86ff;
   color: white;
@@ -18,7 +17,6 @@
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
-  /* text-shadow: -2px -2px 0px rgb(114, 113, 113); */
 }
 
 .Players input::placeholder {
@@ -61,6 +59,10 @@
   .Players input {
     width: 200px;
     height: 50px;
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-evenly;
+    text-align: center;
   }
   .Players {
     flex-direction: column;
