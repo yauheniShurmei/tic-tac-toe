@@ -1,5 +1,6 @@
 .Players {
   display: flex;
+  flex-direction: row;
   margin-top: 50px;
   justify-content: space-evenly;
   text-align: center;
@@ -53,6 +54,16 @@
 
   /* transform: skew(30deg, 0deg); */
   /* filter: drop-shadow(-30px 0px 4px #975e44); */
+}
+
+@media (max-width: 1200px) {
+  .Players {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    justify-content: space-evenly;
+    text-align: center;
+  }
 }
 
 @media (max-width: 540px) {
