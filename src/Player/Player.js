@@ -25,7 +25,21 @@ class Player extends Component {
     }
   };
 
+  resetNames = () => {
+    this.setState({ player1: "" });
+    this.setState({ player2: "" });
+  };
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(prevProps.counterOfGames);
+    if (prevProps.counterOfGames !== this.props.counterOfGames) {
+      this.resetNames();
+    }
+  }
+
   render() {
+    this.props.isNamesClear && this.resetNames();
+
     return (
       <div>
         <div className={classes.Count}>

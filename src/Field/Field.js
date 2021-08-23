@@ -3,7 +3,6 @@ import Square from "../Square/Square";
 import classes from "./Field.module.css";
 import Player from "../Player/Player";
 import History from "../HIstory/History";
-// const History = React.lazy(() => import "../HIstory/History");
 import NavBar from "../NavBar/NavBar";
 import axios from "axios";
 
@@ -26,6 +25,7 @@ class Field extends Component {
     player1: "player1",
     player2: "player2",
     listOfWinner: [],
+    counterOfGames: 0,
   };
 
   clickedOnSquare = (index) => {
@@ -132,6 +132,10 @@ class Field extends Component {
     }
   };
 
+  changeCounterOfGames = () => {
+    this.setState({ counterOfGames: this.state.counterOfGames + 1 });
+  };
+
   newGame = (isNewGame) => {
     if (isNewGame) {
       this.setState({
@@ -155,6 +159,7 @@ class Field extends Component {
         isStartGame: false,
       });
       this.saveResult();
+      this.changeCounterOfGames();
     } else {
       this.setState({
         squares: [
@@ -271,6 +276,7 @@ class Field extends Component {
         />
         {columns}
         <Player
+          counterOfGames={this.state.counterOfGames}
           name={this.getTheName}
           circle={this.state.circle}
           cross={this.state.cross}
